@@ -2,3 +2,6 @@
 
 My GitHub Action
 
+## Section
+
+Add another section
