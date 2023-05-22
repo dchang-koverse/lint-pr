@@ -9,7 +9,7 @@ const octokit = new Octokit({
   auth: GITHUB_TOKEN,
 })
 
-const { data: pullRequest } = await octokit.request('GET /repos/{owner}/{repo}/pulls/{pull_number}', {
+const response = await octokit.request('GET /repos/{owner}/{repo}/pulls/{pull_number}', {
   owner: 'dchang-koverse',
   repo: 'lint-pr',
   pull_number: PR_NUMBER,
@@ -18,4 +18,4 @@ const { data: pullRequest } = await octokit.request('GET /repos/{owner}/{repo}/p
   }
 });
 
-console.log(pullRequest)
+console.log(response)
