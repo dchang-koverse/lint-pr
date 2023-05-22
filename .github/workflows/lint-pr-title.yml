@@ -16,13 +16,17 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
-      - uses: actions/setup-node@v2
+      - name: Set Node.js 16.x
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.x
 
-      # Runs a set of commands using the runners shell
+      - name: Run install
+        uses: borales/actions-yarn@v4
+        with:
+          cmd: install
+
       - name: Lint PR Title
-        run: |
-          pwd
-          ls -lsa
-          node ./.github/scripts/lint-pr-title.js
+        run: node ./.github/scripts/lint-pr-title.js
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
