@@ -9,6 +9,10 @@ const octokit = new Octokit({
   auth: GITHUB_TOKEN,
 })
 
+octokit.emojis.get().then(({ es }) => {
+  console.log(es);
+})
+
 const response = await octokit.request('GET /repos/{owner}/{repo}/pulls/{pull_number}', {
   owner: 'dchang-koverse',
   repo: 'lint-pr',
