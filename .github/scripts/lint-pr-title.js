@@ -4,7 +4,7 @@ const github = require('@actions/github');
 const GITHUB_TOKEN = core.getInput('GITHUB_TOKEN');
 const PR_NUMBER = core.getInput('PR_NUMBER');
 
-const octokit = github.getOctokit(GITHUB_TOKEN);
+const octokit = github.getOctokit({});
 
 const run = async () => {
   const result = await octokit.rest.pulls.get({
