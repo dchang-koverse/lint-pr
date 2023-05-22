@@ -9,11 +9,7 @@ const octokit = new Octokit({
   auth: GITHUB_TOKEN,
 })
 
-octokit.emojis.get().then(({ es }) => {
-  console.log(es);
-})
-
-const response = await octokit.request('GET /repos/{owner}/{repo}/pulls/{pull_number}', {
+const response = await octokit.rest.pulls.get({
   owner: 'dchang-koverse',
   repo: 'lint-pr',
   pull_number: PR_NUMBER,
@@ -21,5 +17,14 @@ const response = await octokit.request('GET /repos/{owner}/{repo}/pulls/{pull_nu
     'X-GitHub-Api-Version': '2022-11-28'
   }
 });
+
+// const response = await octokit.request('GET /repos/{owner}/{repo}/pulls/{pull_number}', {
+//   owner: 'dchang-koverse',
+//   repo: 'lint-pr',
+//   pull_number: PR_NUMBER,
+//   headers: {
+//     'X-GitHub-Api-Version': '2022-11-28'
+//   }
+// });
 
 console.log(response)
