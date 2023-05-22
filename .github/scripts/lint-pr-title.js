@@ -1,19 +1,14 @@
-const core = require('@actions/core');
-const github = require('@actions/github');
+import { Octokit } from "@octokit/rest";
 
-const GITHUB_TOKEN = core.getInput('GITHUB_TOKEN');
-const PR_NUMBER = core.getInput('PR_NUMBER');
-
-const octokit = github.getOctokit({});
-
-const run = async () => {
-  const result = await octokit.rest.pulls.get({
+const octokit = new Octokit({
+  auth: GITHUB_TOKEN,
+})
+(async () => {
+  const { data: pullRequest } = await octokit.rest.pulls.get({
     owner: 'dchang-koverse',
     repo: 'lint-pr',
     pull_number: PR_NUMBER
   });
 
-  console.log(result.data)
-}
-
-run();
+  console.log(pullRequest)
+})
