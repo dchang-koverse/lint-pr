@@ -20,6 +20,8 @@ jobs:
 
       # Runs a set of commands using the runners shell
       - name: Lint PR Title
-        run: node ./.github/scripts/lint-pr-title.js
+        run: |
+          cwd
+          node ./.github/scripts/lint-pr-title.js
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
