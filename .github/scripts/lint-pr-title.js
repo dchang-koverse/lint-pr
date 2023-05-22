@@ -1,5 +1,6 @@
 import { Octokit } from "@octokit/rest";
 import core from '@actions/core';
+import github from '@actions/github'
 
 const GITHUB_TOKEN = core.getInput('GITHUB_TOKEN');
 const PR_NUMBER = core.getInput('PR_NUMBER');
@@ -11,6 +12,8 @@ const octokit = new Octokit({
 
 const root = await octokit.request("GET /")
 console.log(root.status)
+
+console.log('github', github)
 
 try {
   const response = await octokit.request("GET /repos/{owner}/{repo}/pulls/{pull_number}", {
