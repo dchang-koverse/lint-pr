@@ -5,7 +5,9 @@ const GITHUB_TOKEN = core.getInput('GITHUB_TOKEN');
 const PR_NUMBER = core.getInput('PR_NUMBER');
 console.log('PR_NUMBER', PR_NUMBER)
 
-const octokit = new Octokit({})
+const octokit = new Octokit({
+  auth: GITHUB_TOKEN,
+})
 
 const response = await octokit.request('GET /repos/{owner}/{repo}/pulls/{pull_number}', {
   owner: 'dchang-koverse',
