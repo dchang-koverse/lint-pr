@@ -6,10 +6,14 @@ const PR_NUMBER = core.getInput('PR_NUMBER');
 
 const octokit = github.getOctokit(GITHUB_TOKEN);
 
-const result = await octokit.rest.pulls.get({
-  owner: 'dchang-koverse',
-  repo: 'lint-pr',
-  pull_number: PR_NUMBER
-});
+const run = async () => {
+  const result = await octokit.rest.pulls.get({
+    owner: 'dchang-koverse',
+    repo: 'lint-pr',
+    pull_number: PR_NUMBER
+  });
 
-console.log(result.data)
+  console.log(result.data)
+}
+
+run();
