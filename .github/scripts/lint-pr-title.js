@@ -10,24 +10,19 @@ const octokit = new Octokit({
 })
 
 const root = await octokit.request("GET /")
-console.log(root)
+console.log(root.status)
 
-const response = await octokit.rest.pulls.get({
-  owner: 'dchang-koverse',
-  repo: 'lint-pr',
-  pull_number: PR_NUMBER,
-  headers: {
-    'X-GitHub-Api-Version': '2022-11-28'
-  }
-});
+try {
+  const response = await octokit.request("GET /repos/{owner}/{repo}/pulls/{pull_number}", {
+    owner: 'dchang-koverse',
+    repo: 'lint-pr',
+    pull_number: PR_NUMBER,
+    headers: {
+      'X-GitHub-Api-Version': '2022-11-28'
+    }
+  });
 
-// const response = await octokit.request('GET /repos/{owner}/{repo}/pulls/{pull_number}', {
-//   owner: 'dchang-koverse',
-//   repo: 'lint-pr',
-//   pull_number: PR_NUMBER,
-//   headers: {
-//     'X-GitHub-Api-Version': '2022-11-28'
-//   }
-// });
-
-console.log(response)
+  console.log(response)
+} catch (error) {
+  console.warn(error)
+}
