@@ -21,12 +21,11 @@ jobs:
         with:
           node-version: 16.x
 
-      - name: Run install
-        uses: borales/actions-yarn@v4
-        with:
-          cmd: install
+      - run: yarn install --frozen-lockfile
 
       - name: Lint PR Title
         run: node ./.github/scripts/lint-pr-title.js
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          PR_NUMBER: ${{ github.event.number }}
+          
