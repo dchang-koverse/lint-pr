@@ -21,7 +21,7 @@ jobs:
           pwd
           ls -lsa
       - name: Lint PR Title
-        run: node ./.github/scripts/lint-pr-title.js
+        run: node ./lint-pr-title/index.js
         env:
           GITHUB_TOKEN: ${{secrets.REPO_TOKEN}}
           PR_NUMBER: ${{ github.event.number }}
