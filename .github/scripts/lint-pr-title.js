@@ -9,6 +9,9 @@ const octokit = new Octokit({
   auth: GITHUB_TOKEN,
 })
 
+const root = await octokit.request("GET /")
+console.log(root)
+
 const response = await octokit.rest.pulls.get({
   owner: 'dchang-koverse',
   repo: 'lint-pr',
