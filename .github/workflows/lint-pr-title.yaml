@@ -1,0 +1,26 @@
+name: Lint PR
+
+on:
+  #  pull_request:
+  # types: [opened, edited, reopened, synchronize]
+
+jobs:
+  lint-pr-title:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: |
+          pwd
+          ls -lsa
+      - name: Set Node.js 16.x
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.x
+      - run: cd lint-pr-title && yarn install
+      - run: |
+          pwd
+          ls -lsa
+      - name: Lint PR Title
+        run: node ./lint-pr-title/index.js
+        env:
+          GITHUB_TOKEN: ${{secrets.REPO_TOKEN}}
