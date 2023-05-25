@@ -1,8 +1,8 @@
 name: Lint PR
 
 on:
-  pull_request:
-    types: [opened, edited, reopened, synchronize]
+  #  pull_request:
+  # types: [opened, edited, reopened, synchronize]
 
 jobs:
   lint-pr-title:
@@ -24,4 +24,3 @@ jobs:
         run: node ./lint-pr-title/index.js
         env:
           GITHUB_TOKEN: ${{secrets.REPO_TOKEN}}
-          PR_NUMBER: ${{ github.event.number }}
